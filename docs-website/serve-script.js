@@ -4,9 +4,9 @@ const path = require('path');
 const fs = require('fs');
 
 const server = http.createServer((request, response) => {
-  // Rewrite /orm/* to /*
-  if (request.url.startsWith('/orm')) {
-    request.url = request.url.substring(4) || '/';
+  // Rewrite /foundry-orm/* to /*
+  if (request.url.startsWith('/foundry-orm')) {
+    request.url = request.url.substring(12) || '/';
   }
   
   // Remove query parameters for file checking
@@ -34,5 +34,5 @@ const server = http.createServer((request, response) => {
 
 const PORT = 3000;
 server.listen(PORT, () => {
-  console.log(`\n  Server running at http://localhost:${PORT}/orm\n`);
+  console.log(`\n  Server running at http://localhost:${PORT}/foundry-orm\n`);
 });

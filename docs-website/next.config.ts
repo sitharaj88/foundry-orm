@@ -9,8 +9,8 @@ const nextConfig: NextConfig = {
       unoptimized: true,
     },
     outputFileTracingRoot: path.join(process.cwd()),
-    basePath: '/orm',
-    assetPrefix: '/orm',
+    basePath: '/foundry-orm',
+    assetPrefix: '/foundry-orm',
   }),
 };
 
