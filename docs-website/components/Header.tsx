@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X, Github, ChevronDown } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -66,7 +65,6 @@ export function Header() {
             <Github className="w-4 h-4" />
             GitHub
           </a>
-          <ThemeToggle />
         </div>
       </nav>
 
@@ -186,11 +184,6 @@ export function Header() {
               <Github className="w-5 h-5" />
               GitHub
             </a>
-            
-            <div className="flex items-center justify-between rounded-lg px-3 py-2.5">
-              <span className="text-base font-semibold text-gray-900 dark:text-gray-100">Theme</span>
-              <ThemeToggle />
-            </div>
           </div>
         </div>
       )}

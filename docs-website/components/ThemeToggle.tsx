@@ -21,6 +21,20 @@ export function ThemeToggle() {
     }
   }, []);
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      const savedTheme = localStorage.getItem('theme');
+      if (!savedTheme) {
+        const newTheme = e.matches ? 'dark' : 'light';
+        setTheme(newTheme);
+        document.documentElement.classList.toggle('dark', e.matches);
+      }
+    };
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
