@@ -144,18 +144,18 @@ await connection.disconnect();`}
       <h2>Next Steps</h2>
       <p>Now that you have FoundryORM installed, explore these topics:</p>
       <ul>
-        <li><a href="/orm/docs/installation">Installation Guide</a> - Detailed installation instructions</li>
-        <li><a href="/orm/docs/quick-start">Quick Start</a> - Complete tutorial</li>
-        <li><a href="/orm/docs/models">Models & Decorators</a> - Learn about defining models</li>
-        <li><a href="/orm/docs/connections">Database Connections</a> - Configure your database</li>
-        <li><a href="/orm/docs/examples">Examples</a> - See real-world examples</li>
+        <li><a href="/docs/installation">Installation Guide</a> - Detailed installation instructions</li>
+        <li><a href="/docs/quick-start">Quick Start</a> - Complete tutorial</li>
+        <li><a href="/docs/models">Models & Decorators</a> - Learn about defining models</li>
+        <li><a href="/docs/connections">Database Connections</a> - Configure your database</li>
+        <li><a href="/docs/examples">Examples</a> - See real-world examples</li>
       </ul>
 
       <div className="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
         <h3 className="mt-0 text-blue-900 dark:text-blue-100">Need Help?</h3>
         <p className="mb-0 text-blue-800 dark:text-blue-200">
           If you run into any issues, check out our{' '}
-          <a href="https://github.com/yourusername/typescript-orm/issues" className="text-blue-600 dark:text-blue-400 hover:underline">
+          <a href="https://github.com/sitharaj88/foundry-orm/issues" className="text-blue-600 dark:text-blue-400 hover:underline">
             GitHub Issues
           </a>{' '}
           or join our community discussions.

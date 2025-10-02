@@ -76,7 +76,7 @@ export function Sidebar() {
         <ul className="space-y-2">
           <li>
             <a
-              href="https://github.com/yourusername/typescript-orm"
+              href="https://github.com/sitharaj88/foundry-orm"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -86,7 +86,7 @@ export function Sidebar() {
           </li>
           <li>
             <a
-              href="https://github.com/yourusername/typescript-orm/issues"
+              href="https://github.com/sitharaj88/foundry-orm/issues"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -96,7 +96,7 @@ export function Sidebar() {
           </li>
           <li>
             <a
-              href="https://github.com/yourusername/typescript-orm/discussions"
+              href="https://github.com/sitharaj88/foundry-orm/discussions"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
