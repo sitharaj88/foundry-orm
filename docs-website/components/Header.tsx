@@ -56,15 +56,15 @@ export function Header() {
           >
             Examples
           </Link>
-          <a
-            href="https://github.com/yourusername/foundry-orm"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1"
-          >
-            <Github className="w-4 h-4" />
-            GitHub
-          </a>
+            <a
+              href="https://github.com/sitharaj88/foundry-orm"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1"
+            >
+              <Github className="w-4 h-4" />
+              GitHub
+            </a>
         </div>
       </nav>
 
@@ -175,7 +175,7 @@ export function Header() {
             </Link>
             
             <a
-              href="https://github.com/yourusername/foundry-orm"
+              href="https://github.com/sitharaj88/foundry-orm"
               target="_blank"
               rel="noopener noreferrer"
               className="block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center gap-2"

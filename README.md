@@ -2,6 +2,10 @@
 
 A reliable, enterprise-grade Object-Relational Mapping library for TypeScript applications using Express.js, supporting multiple databases including PostgreSQL, MySQL, SQLite, and MongoDB.
 
+## Repository
+
+[GitHub Repository](https://github.com/sitharaj88/foundry-orm)
+
 ## Installation
 
 ```bash
@@ -23,7 +27,7 @@ npm install foundry-orm
 ## Usage
 
 ```typescript
-import { Connection, Entity, Column, BaseModel, ConsoleLogger } from 'typescript-orm';
+import { Connection, Entity, Column, BaseModel, ConsoleLogger } from 'foundry-orm';
 
 // Define a model
 @Entity('users')
@@ -99,7 +103,7 @@ The library provides custom error types:
 - `ValidationError`: Input validation errors
 
 ```typescript
-import { ORMErrors } from 'typescript-orm';
+import { ORMErrors } from 'foundry-orm';
 
 try {
   // ORM operations
@@ -117,7 +121,7 @@ try {
 Implement the `ILogger` interface for custom logging:
 
 ```typescript
-import { ILogger } from 'typescript-orm';
+import { ILogger } from 'foundry-orm';
 
 class CustomLogger implements ILogger {
   info(message: string, meta?: any): void {

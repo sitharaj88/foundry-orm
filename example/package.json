@@ -2,6 +2,10 @@
   "name": "orm-express-example",
   "version": "1.0.0",
   "description": "Example Express.js app using the TypeScript ORM",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sitharaj88/foundry-orm.git"
+  },
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
