@@ -88,7 +88,7 @@ git push origin main
 |----------|---------|-----|-------|
 | **Development** | `npm run dev` | http://localhost:3000 | ✅ Recommended |
 | **Local Preview** | Comment basePath → `npm run build` → `npx serve out` | http://localhost:3000 | Uncomment before deploy |
-| **GitHub Pages** | Push to GitHub | https://username.github.io/orm/ | Needs basePath |
+| **GitHub Pages** | Push to GitHub | https://sitharaj88.github.io/foundry-orm/ | Needs basePath |
 
 ---
 

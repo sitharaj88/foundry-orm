@@ -3,7 +3,16 @@
 ## ✅ Issues Fixed
 
 1. **Multiple lockfiles warning** - Added `outputFileTracingRoot` to Next.js config
-2. **Start command error** - Replaced `next start` with `npm run preview` for static exports
+22. Add to sidebar navigation:
+   ```tsx
+   // components/Sidebar.tsx
+   {
+     title: 'My Section',
+     items: [
+       { title: 'My Page', href: '/docs/my-page' },
+     ],
+   }
+   ```command error** - Replaced `next start` with `npm run preview` for static exports
 
 ## 🚀 Development & Preview
 
@@ -23,32 +32,32 @@ npm run build
 npm run preview
 ```
 - Serves the static export
-- Opens at: `http://localhost:3000/orm/` ⚠️ **Note the `/orm/` path!**
+- Opens at: `http://localhost:3000/foundry-orm/` ⚠️ **Note the `/foundry-orm/` path!**
 - This simulates GitHub Pages deployment
 
 ## 📝 Important Notes
 
 ### BasePath Configuration
-The site is configured with `basePath: '/orm'` in `next.config.ts`. This means:
+The site is configured with `basePath: '/foundry-orm'` in `next.config.ts`. This means:
 
 **Local Development (`npm run dev`):**
 - ✅ Access at: `http://localhost:3000`
-- No `/orm/` prefix needed
+- No `/foundry-orm/` prefix needed
 
 **Production Preview (`npm run preview`):**
-- ✅ Access at: `http://localhost:3000/orm/`
-- ⚠️ Must include `/orm/` prefix
+- ✅ Access at: `http://localhost:3000/foundry-orm/`
+- ⚠️ Must include `/foundry-orm/` prefix
 
 **GitHub Pages (deployed):**
 - ✅ Access at: `https://sitharaj88.github.io/foundry-orm/`
-- Automatically includes `/orm/` prefix
+- Automatically includes `/foundry-orm/` prefix
 
 ### Why the BasePath?
 GitHub Pages serves your site at `https://username.github.io/repository-name/`, so we need the basePath to match your repository name. 
 
 **To Change Repository Name:**
 1. Edit `next.config.ts`
-2. Change `basePath: '/orm'` to `basePath: '/your-repo-name'`
+2. Change `basePath: '/foundry-orm'` to `basePath: '/your-repo-name'`
 3. Rebuild: `npm run build`
 
 ## 🔧 Common Commands
@@ -121,7 +130,7 @@ npm run build
 ### "404 Not Found" on preview
 **Problem:** Accessing `http://localhost:3000` shows 404
 
-**Solution:** Access `http://localhost:3000/orm/` instead (note the `/orm/` path)
+**Solution:** Access `http://localhost:3000/foundry-orm/` instead (note the `/foundry-orm/` path)
 
 ### Build warnings about lockfiles
 **Solution:** Already fixed! The `outputFileTracingRoot` is configured.
@@ -153,7 +162,7 @@ npm run build
    {
      title: 'My Section',
      items: [
-       { title: 'My Page', href: '/orm/docs/my-page' },
+       { title: 'My Page', href: '/foundry-orm/docs/my-page' },
      ],
    }
    ```
@@ -166,7 +175,7 @@ npm run build
 
 ## ✨ Tips
 
-- **Use `npm run dev` for development** - It's faster and doesn't require the `/orm/` path
+- **Use `npm run dev` for development** - It's faster and doesn't require the `/foundry-orm/` path
 - **Test with `npm run preview`** before deploying - Catches path issues
 - **Check GitHub Actions logs** if deployment fails
 - **Update GitHub username** in links throughout the docs
