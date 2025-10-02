@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   outputFileTracingRoot: path.join(process.cwd()),
-  // No basePath - GitHub Pages handles this automatically
-  // Local preview uses serve-script.js with URL rewriting
+  basePath: '/foundry-orm',
+  assetPrefix: '/foundry-orm',
 };
 
 export default nextConfig;

@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "preview": "npx serve@latest out -p 3000",
+    "preview": "node serve-script.js",
     "lint": "eslint"
   },
   "dependencies": {
