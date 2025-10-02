@@ -1,11 +1,11 @@
-# TypeScript ORM for Express.js
+# FoundryORM
 
 A reliable, enterprise-grade Object-Relational Mapping library for TypeScript applications using Express.js, supporting multiple databases including PostgreSQL, MySQL, SQLite, and MongoDB.
 
 ## Installation
 
 ```bash
-npm install typescript-orm
+npm install foundry-orm
 ```
 
 ## Features

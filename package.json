@@ -1,7 +1,7 @@
 {
-  "name": "typescript-orm",
+  "name": "foundry-orm",
   "version": "1.0.0",
-  "description": "A simple ORM for TypeScript and Express.js",
+  "description": "FoundryORM — enterprise-grade TypeScript ORM for Express.js (Postgres, MySQL, SQLite, MongoDB)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
