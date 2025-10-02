@@ -1,0 +1,9 @@
+{
+  "public": "out",
+  "rewrites": [
+    {
+      "source": "/orm/**",
+      "destination": "/:splat"
+    }
+  ]
+}
