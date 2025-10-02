@@ -5,7 +5,7 @@ export default function QuickStartPage() {
     <div className="prose prose-slate dark:prose-invert max-w-none">
       <h1>Quick Start</h1>
       <p className="lead">
-        Learn the basics of TypeScript ORM in 5 minutes with this quick start guide.
+        Learn the basics of FoundryORM in 5 minutes with this quick start guide.
       </p>
 
       <h2>Step 1: Define Your Model</h2>

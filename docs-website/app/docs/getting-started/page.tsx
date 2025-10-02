@@ -10,12 +10,12 @@ export default function GettingStarted() {
       </div>
 
       <p className="lead">
-        Welcome to TypeScript ORM! This guide will help you get up and running in minutes.
+        Welcome to FoundryORM! This guide will help you get up and running in minutes.
       </p>
 
-      <h2>What is TypeScript ORM?</h2>
+      <h2>What is FoundryORM?</h2>
       <p>
-        TypeScript ORM is an enterprise-grade Object-Relational Mapping library that provides a unified API
+        FoundryORM is an enterprise-grade Object-Relational Mapping library that provides a unified API
         for working with multiple databases. It supports PostgreSQL, MySQL, SQLite, and MongoDB, allowing you
         to switch between databases without changing your code.
       </p>
@@ -57,7 +57,7 @@ export default function GettingStarted() {
       </ul>
 
       <h2>Installation</h2>
-      <p>Install TypeScript ORM using npm:</p>
+      <p>Install FoundryORM using npm:</p>
       <CodeBlock
         code="npm install typescript-orm reflect-metadata"
         language="bash"
@@ -142,7 +142,7 @@ await connection.disconnect();`}
       />
 
       <h2>Next Steps</h2>
-      <p>Now that you have TypeScript ORM installed, explore these topics:</p>
+      <p>Now that you have FoundryORM installed, explore these topics:</p>
       <ul>
         <li><a href="/orm/docs/installation">Installation Guide</a> - Detailed installation instructions</li>
         <li><a href="/orm/docs/quick-start">Quick Start</a> - Complete tutorial</li>

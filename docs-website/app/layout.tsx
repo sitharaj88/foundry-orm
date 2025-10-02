@@ -7,7 +7,7 @@ import { Header } from "@/components/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "TypeScript ORM - Enterprise-Grade Multi-Database ORM",
+  title: "FoundryORM - Enterprise-Grade Multi-Database ORM",
   description: "A powerful TypeScript ORM supporting PostgreSQL, MySQL, SQLite, and MongoDB with connection pooling, transactions, and more.",
 };
 

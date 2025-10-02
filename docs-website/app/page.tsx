@@ -84,7 +84,7 @@ export default function Home() {
       <section className="relative px-4 sm:px-6 py-16 sm:py-24 lg:py-32">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-            TypeScript ORM
+            FoundryORM
           </h1>
           <p className="mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-gray-600 dark:text-gray-300 px-4">
             A powerful, enterprise-grade ORM for TypeScript and Node.js. Support for PostgreSQL, MySQL, SQLite, and MongoDB with connection pooling, transactions, and type safety.

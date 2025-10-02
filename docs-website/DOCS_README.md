@@ -1,6 +1,6 @@
-# TypeScript ORM Documentation
+# FoundryORM Documentation
 
-🚀 **Professional documentation website for TypeScript ORM** - Built with Next.js 14, Tailwind CSS, and deployed to GitHub Pages.
+🚀 **Professional documentation website for FoundryORM** - Built with Next.js 14, Tailwind CSS, and deployed to GitHub Pages.
 
 ## 🌟 Features
 

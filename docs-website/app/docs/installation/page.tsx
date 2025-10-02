@@ -5,11 +5,11 @@ export default function InstallationPage() {
     <div className="prose prose-slate dark:prose-invert max-w-none">
       <h1>Installation</h1>
       <p className="lead">
-        Get started with TypeScript ORM by installing the package and its database drivers.
+        Get started with FoundryORM by installing the package and its database drivers.
       </p>
 
       <h2>Prerequisites</h2>
-      <p>Before installing TypeScript ORM, ensure you have:</p>
+      <p>Before installing FoundryORM, ensure you have:</p>
       <ul>
         <li>Node.js 16.x or higher</li>
         <li>TypeScript 5.0 or higher</li>
@@ -17,7 +17,7 @@ export default function InstallationPage() {
       </ul>
 
       <h2>Install the Core Package</h2>
-      <p>Install the TypeScript ORM package using your preferred package manager:</p>
+      <p>Install the FoundryORM package using your preferred package manager:</p>
 
       <h3>Using npm</h3>
       <CodeBlock language="bash">
@@ -36,7 +36,7 @@ export default function InstallationPage() {
 
       <h2>Install Database Drivers</h2>
       <p>
-        TypeScript ORM supports multiple databases. Install the driver for your database:
+        FoundryORM supports multiple databases. Install the driver for your database:
       </p>
 
       <h3>PostgreSQL</h3>
@@ -61,7 +61,7 @@ export default function InstallationPage() {
 
       <h2>TypeScript Configuration</h2>
       <p>
-        TypeScript ORM uses decorators, which require specific compiler options. Update your{' '}
+        FoundryORM uses decorators, which require specific compiler options. Update your{' '}
         <code>tsconfig.json</code>:
       </p>
 
@@ -112,7 +112,7 @@ class User extends BaseModel {
   name!: string;
 }
 
-console.log('TypeScript ORM installed successfully!');`}
+console.log('FoundryORM installed successfully!');`}
       </CodeBlock>
 
       <p>Compile and run the test:</p>
@@ -122,7 +122,7 @@ node test.js`}
       </CodeBlock>
 
       <h2>Next Steps</h2>
-      <p>Now that you have TypeScript ORM installed, you can:</p>
+      <p>Now that you have FoundryORM installed, you can:</p>
       <ul>
         <li>
           <a href="/docs/quick-start">Follow the Quick Start guide</a>

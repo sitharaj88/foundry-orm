@@ -14,10 +14,10 @@ export function Header() {
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5 flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-lg">TS</span>
+              <span className="text-white font-bold text-lg">FO</span>
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-              TypeScript ORM
+              FoundryORM
             </span>
           </Link>
         </div>

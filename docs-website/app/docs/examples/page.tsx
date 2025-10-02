@@ -10,7 +10,7 @@ export default function Examples() {
       </div>
 
       <p className="lead">
-        Learn by example! Here are common use cases and patterns for TypeScript ORM.
+        Learn by example! Here are common use cases and patterns for FoundryORM.
       </p>
 
       <h2>Express.js Integration</h2>

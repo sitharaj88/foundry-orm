@@ -188,7 +188,7 @@ if (isHealthy) {
 
       <h2>Connection Pooling</h2>
       <p>
-        TypeScript ORM automatically handles connection pooling for PostgreSQL and MySQL:
+        FoundryORM automatically handles connection pooling for PostgreSQL and MySQL:
       </p>
 
       <CodeBlock language="typescript">
