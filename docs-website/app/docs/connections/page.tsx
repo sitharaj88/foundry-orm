@@ -14,7 +14,7 @@ export default function ConnectionsPage() {
       </p>
 
       <CodeBlock language="typescript">
-{`import { Connection, BaseModel } from 'typescript-orm';
+{`import { Connection, BaseModel } from 'foundry-orm';
 
 const connection = new Connection('database-type', {
   // configuration options
@@ -28,7 +28,7 @@ BaseModel.setConnection(connection);`}
       <p>Connect to a PostgreSQL database:</p>
 
       <CodeBlock language="typescript" filename="db/postgres.ts">
-{`import { Connection, BaseModel } from 'typescript-orm';
+{`import { Connection, BaseModel } from 'foundry-orm';
 
 const connection = new Connection('postgres', {
   host: 'localhost',
@@ -66,7 +66,7 @@ export default connection;`}
       <p>Connect to a MySQL database:</p>
 
       <CodeBlock language="typescript" filename="db/mysql.ts">
-{`import { Connection, BaseModel } from 'typescript-orm';
+{`import { Connection, BaseModel } from 'foundry-orm';
 
 const connection = new Connection('mysql', {
   host: 'localhost',
@@ -101,7 +101,7 @@ export default connection;`}
       <p>Connect to a SQLite database:</p>
 
       <CodeBlock language="typescript" filename="db/sqlite.ts">
-{`import { Connection, BaseModel } from 'typescript-orm';
+{`import { Connection, BaseModel } from 'foundry-orm';
 
 // File-based database
 const connection = new Connection('sqlite', {
@@ -123,7 +123,7 @@ export default connection;`}
       <p>Connect to a MongoDB database:</p>
 
       <CodeBlock language="typescript" filename="db/mongodb.ts">
-{`import { Connection, BaseModel } from 'typescript-orm';
+{`import { Connection, BaseModel } from 'foundry-orm';
 
 const connection = new Connection('mongodb', {
   url: 'mongodb://localhost:27017',
@@ -212,7 +212,7 @@ if (isHealthy) {
       </p>
 
       <CodeBlock language="typescript" filename="db/connection.ts">
-{`import { Connection, BaseModel } from 'typescript-orm';
+{`import { Connection, BaseModel } from 'foundry-orm';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -249,7 +249,7 @@ DB_PASSWORD=your_secure_password`}
       </p>
 
       <CodeBlock language="typescript">
-{`import { Connection } from 'typescript-orm';
+{`import { Connection } from 'foundry-orm';
 
 // Primary database
 const primaryDb = new Connection('postgres', {
@@ -274,7 +274,7 @@ AnalyticsEvent.setConnection(analyticsDb);`}
       <p>Always handle connection errors properly:</p>
 
       <CodeBlock language="typescript">
-{`import { Connection, ConnectionError } from 'typescript-orm';
+{`import { Connection, ConnectionError } from 'foundry-orm';
 
 try {
   const connection = new Connection('postgres', config);
@@ -309,16 +309,16 @@ try {
       <h2>Next Steps</h2>
       <ul>
         <li>
-          <a href="/docs/models">Define models for your database</a>
+          <a href="/foundry-orm/docs/models">Define models for your database</a>
         </li>
         <li>
-          <a href="/docs/query-builder">Build complex queries</a>
+          <a href="/foundry-orm/docs/query-builder">Build complex queries</a>
         </li>
         <li>
-          <a href="/docs/transactions">Use transactions</a>
+          <a href="/foundry-orm/docs/transactions">Use transactions</a>
         </li>
         <li>
-          <a href="/docs/pooling">Learn more about connection pooling</a>
+          <a href="/foundry-orm/docs/pooling">Learn more about connection pooling</a>
         </li>
       </ul>
     </div>

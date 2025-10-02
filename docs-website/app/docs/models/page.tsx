@@ -14,7 +14,7 @@ export default function ModelsPage() {
       </p>
 
       <CodeBlock language="typescript">
-{`import { Entity, BaseModel } from 'typescript-orm';
+{`import { Entity, BaseModel } from 'foundry-orm';
 
 @Entity('users')  // Maps to 'users' table
 export class User extends BaseModel {
@@ -127,7 +127,7 @@ if (user) {
 
       <h3>User Model</h3>
       <CodeBlock language="typescript" filename="models/User.ts">
-{`import { Entity, Column, BaseModel } from 'typescript-orm';
+{`import { Entity, Column, BaseModel } from 'foundry-orm';
 
 @Entity('users')
 export class User extends BaseModel {
@@ -156,7 +156,7 @@ export class User extends BaseModel {
 
       <h3>Post Model</h3>
       <CodeBlock language="typescript" filename="models/Post.ts">
-{`import { Entity, Column, BaseModel } from 'typescript-orm';
+{`import { Entity, Column, BaseModel } from 'foundry-orm';
 
 @Entity('posts')
 export class Post extends BaseModel {
@@ -185,7 +185,7 @@ export class Post extends BaseModel {
 
       <h3>Product Model with Custom Methods</h3>
       <CodeBlock language="typescript" filename="models/Product.ts">
-{`import { Entity, Column, BaseModel } from 'typescript-orm';
+{`import { Entity, Column, BaseModel } from 'foundry-orm';
 
 @Entity('products')
 export class Product extends BaseModel {
@@ -254,16 +254,16 @@ export class Product extends BaseModel {
       <h2>Next Steps</h2>
       <ul>
         <li>
-          <a href="/docs/connections">Learn about database connections</a>
+          <a href="/foundry-orm/docs/connections">Learn about database connections</a>
         </li>
         <li>
-          <a href="/docs/query-builder">Build complex queries</a>
+          <a href="/foundry-orm/docs/query-builder">Build complex queries</a>
         </li>
         <li>
-          <a href="/docs/transactions">Work with transactions</a>
+          <a href="/foundry-orm/docs/transactions">Work with transactions</a>
         </li>
         <li>
-          <a href="/docs/validation">Add validation to models</a>
+          <a href="/foundry-orm/docs/validation">Add validation to models</a>
         </li>
       </ul>
     </div>

@@ -63,7 +63,7 @@ basePath: '/orm', // ← Uncomment before deploying!
 ### The basePath is REQUIRED for GitHub Pages
 When deployed, your site will be at:
 ```
-https://yourusername.github.io/orm/
+https://sitharaj88.github.io/foundry-orm/
 ```
 
 The `basePath: '/orm'` ensures all assets load correctly at this URL.

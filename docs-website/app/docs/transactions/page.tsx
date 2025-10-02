@@ -437,13 +437,13 @@ await adapter.commit();`}
       <h2>Next Steps</h2>
       <ul>
         <li>
-          <a href="/docs/error-handling">Learn about error handling</a>
+          <a href="/foundry-orm/docs/error-handling">Learn about error handling</a>
         </li>
         <li>
-          <a href="/docs/logging">Add logging to track transactions</a>
+          <a href="/foundry-orm/docs/logging">Add logging to track transactions</a>
         </li>
         <li>
-          <a href="/docs/examples">See more transaction examples</a>
+          <a href="/foundry-orm/docs/examples">See more transaction examples</a>
         </li>
       </ul>
     </div>

@@ -59,13 +59,13 @@ export default function GettingStarted() {
       <h2>Installation</h2>
       <p>Install FoundryORM using npm:</p>
       <CodeBlock
-        code="npm install typescript-orm reflect-metadata"
+        code="npm install foundry-orm reflect-metadata"
         language="bash"
       />
 
       <p>Or using yarn:</p>
       <CodeBlock
-        code="yarn add typescript-orm reflect-metadata"
+        code="yarn add foundry-orm reflect-metadata"
         language="bash"
       />
 
@@ -89,7 +89,7 @@ export default function GettingStarted() {
       <p>Here's a simple example to get you started:</p>
       <CodeBlock
         code={`import 'reflect-metadata';
-import { Connection, Entity, Column, BaseModel, ConsoleLogger } from 'typescript-orm';
+import { Connection, Entity, Column, BaseModel, ConsoleLogger } from 'foundry-orm';
 
 // Define your model
 @Entity('users')
@@ -144,11 +144,11 @@ await connection.disconnect();`}
       <h2>Next Steps</h2>
       <p>Now that you have FoundryORM installed, explore these topics:</p>
       <ul>
-        <li><a href="/docs/installation">Installation Guide</a> - Detailed installation instructions</li>
-        <li><a href="/docs/quick-start">Quick Start</a> - Complete tutorial</li>
-        <li><a href="/docs/models">Models & Decorators</a> - Learn about defining models</li>
-        <li><a href="/docs/connections">Database Connections</a> - Configure your database</li>
-        <li><a href="/docs/examples">Examples</a> - See real-world examples</li>
+        <li><a href="/foundry-orm/docs/installation">Installation Guide</a> - Detailed installation instructions</li>
+        <li><a href="/foundry-orm/docs/quick-start">Quick Start</a> - Complete tutorial</li>
+        <li><a href="/foundry-orm/docs/models">Models & Decorators</a> - Learn about defining models</li>
+        <li><a href="/foundry-orm/docs/connections">Database Connections</a> - Configure your database</li>
+        <li><a href="/foundry-orm/docs/examples">Examples</a> - See real-world examples</li>
       </ul>
 
       <div className="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">

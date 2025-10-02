@@ -18,7 +18,7 @@ export default function Examples() {
       <CodeBlock
         code={`import 'reflect-metadata';
 import express from 'express';
-import { Connection, Entity, Column, BaseModel, ConsoleLogger } from 'typescript-orm';
+import { Connection, Entity, Column, BaseModel, ConsoleLogger } from 'foundry-orm';
 
 // Define User model
 @Entity('users')
@@ -117,7 +117,7 @@ initDatabase().then(() => {
       <h2>Using with PostgreSQL</h2>
       <CodeBlock
         code={`import 'reflect-metadata';
-import { Connection, Entity, Column, BaseModel, ConsoleLogger } from 'typescript-orm';
+import { Connection, Entity, Column, BaseModel, ConsoleLogger } from 'foundry-orm';
 
 @Entity('products')
 class Product extends BaseModel {
@@ -169,7 +169,7 @@ await connection.disconnect();`}
       <h2>Using with MongoDB</h2>
       <CodeBlock
         code={`import 'reflect-metadata';
-import { Connection, Entity, Column, BaseModel, ConsoleLogger } from 'typescript-orm';
+import { Connection, Entity, Column, BaseModel, ConsoleLogger } from 'foundry-orm';
 
 @Entity('orders')
 class Order extends BaseModel {
@@ -223,7 +223,7 @@ await connection.disconnect();`}
 
       <h2>Using Transactions</h2>
       <CodeBlock
-        code={`import { Connection } from 'typescript-orm';
+        code={`import { Connection } from 'foundry-orm';
 
 const connection = new Connection('postgres', config);
 await connection.connect();
@@ -252,7 +252,7 @@ console.log('Transaction completed successfully');`}
 
       <h2>Using Query Builder</h2>
       <CodeBlock
-        code={`import { QueryBuilder } from 'typescript-orm';
+        code={`import { QueryBuilder } from 'foundry-orm';
 
 const qb = new QueryBuilder('users', connection.getAdapter());
 
@@ -271,7 +271,7 @@ console.log('Active adult users:', result.rows);`}
 
       <h2>Custom Logger</h2>
       <CodeBlock
-        code={`import { ILogger } from 'typescript-orm';
+        code={`import { ILogger } from 'foundry-orm';
 
 class CustomLogger implements ILogger {
   info(message: string, meta?: any): void {
@@ -299,7 +299,7 @@ const connection = new Connection('postgres', config, new CustomLogger());`}
         <h3 className="mt-0 text-green-900 dark:text-green-100">More Examples</h3>
         <p className="mb-0 text-green-800 dark:text-green-200">
           Check out our{' '}
-          <a href="https://github.com/yourusername/typescript-orm/tree/main/examples" className="text-green-600 dark:text-green-400 hover:underline">
+          <a href="https://github.com/sitharaj88/foundry-orm/tree/main/example" className="text-green-600 dark:text-green-400 hover:underline">
             GitHub repository
           </a>{' '}
           for more complete examples and sample applications.

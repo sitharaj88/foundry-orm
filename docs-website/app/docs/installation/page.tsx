@@ -21,17 +21,17 @@ export default function InstallationPage() {
 
       <h3>Using npm</h3>
       <CodeBlock language="bash">
-        npm install typescript-orm
+        npm install foundry-orm
       </CodeBlock>
 
       <h3>Using yarn</h3>
       <CodeBlock language="bash">
-        yarn add typescript-orm
+        yarn add foundry-orm
       </CodeBlock>
 
       <h3>Using pnpm</h3>
       <CodeBlock language="bash">
-        pnpm add typescript-orm
+        pnpm add foundry-orm
       </CodeBlock>
 
       <h2>Install Database Drivers</h2>
@@ -101,7 +101,7 @@ export default function InstallationPage() {
       <p>Create a simple test file to verify the installation:</p>
 
       <CodeBlock language="typescript" filename="test.ts">
-{`import { Connection, Entity, Column, BaseModel } from 'typescript-orm';
+{`import { Connection, Entity, Column, BaseModel } from 'foundry-orm';
 
 @Entity('users')
 class User extends BaseModel {
@@ -125,16 +125,16 @@ node test.js`}
       <p>Now that you have FoundryORM installed, you can:</p>
       <ul>
         <li>
-          <a href="/docs/quick-start">Follow the Quick Start guide</a>
+          <a href="/foundry-orm/docs/quick-start">Follow the Quick Start guide</a>
         </li>
         <li>
-          <a href="/docs/models">Learn about Models and Decorators</a>
+          <a href="/foundry-orm/docs/models">Learn about Models and Decorators</a>
         </li>
         <li>
-          <a href="/docs/connections">Configure database connections</a>
+          <a href="/foundry-orm/docs/connections">Configure database connections</a>
         </li>
         <li>
-          <a href="/docs/examples">Explore examples</a>
+          <a href="/foundry-orm/docs/examples">Explore examples</a>
         </li>
       </ul>
     </div>

@@ -40,7 +40,7 @@ The site is configured with `basePath: '/orm'` in `next.config.ts`. This means:
 - ⚠️ Must include `/orm/` prefix
 
 **GitHub Pages (deployed):**
-- ✅ Access at: `https://yourusername.github.io/orm/`
+- ✅ Access at: `https://sitharaj88.github.io/foundry-orm/`
 - Automatically includes `/orm/` prefix
 
 ### Why the BasePath?
@@ -101,7 +101,7 @@ out/
 
 3. **Wait for deployment:**
    - Check Actions tab for build status
-   - Site will be live at: `https://yourusername.github.io/orm/`
+   - Site will be live at: `https://sitharaj88.github.io/foundry-orm/`
 
 ### Manual Deployment
 

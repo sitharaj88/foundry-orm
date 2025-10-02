@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Database, Zap, Shield, Code2, Layers, GitBranch } from 'lucide-react';
 import { CodeBlock } from '@/components/CodeBlock';
 
-const quickStartCode = `import { Connection, Entity, Column, BaseModel } from 'typescript-orm';
+const quickStartCode = `import { Connection, Entity, Column, BaseModel } from 'foundry-orm';
 
 // Define your model
 @Entity('users')

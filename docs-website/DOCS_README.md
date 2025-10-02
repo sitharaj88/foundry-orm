@@ -119,7 +119,7 @@ The documentation is automatically deployed to GitHub Pages when changes are pus
    - Deploy to GitHub Pages
 
 5. **Access Your Site**:
-   - URL: `https://yourusername.github.io/orm/`
+   - URL: `https://sitharaj88.github.io/foundry-orm/`
 
 ### Manual Deployment
 
@@ -221,9 +221,9 @@ MIT License - See LICENSE file for details
 
 ## 🔗 Links
 
-- **Live Documentation**: https://yourusername.github.io/orm/
-- **Main Repository**: https://github.com/yourusername/typescript-orm
-- **Report Issues**: https://github.com/yourusername/typescript-orm/issues
+- **Live Documentation**: https://sitharaj88.github.io/foundry-orm/
+- **Main Repository**: https://github.com/sitharaj88/foundry-orm
+- **Report Issues**: https://github.com/sitharaj88/foundry-orm/issues
 
 ---
 

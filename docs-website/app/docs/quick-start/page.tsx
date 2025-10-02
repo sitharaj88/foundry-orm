@@ -14,7 +14,7 @@ export default function QuickStartPage() {
       </p>
 
       <CodeBlock language="typescript" filename="models/User.ts">
-{`import { Entity, Column, BaseModel } from 'typescript-orm';
+{`import { Entity, Column, BaseModel } from 'foundry-orm';
 
 @Entity('users')
 export class User extends BaseModel {
@@ -38,7 +38,7 @@ export class User extends BaseModel {
       </p>
 
       <CodeBlock language="typescript" filename="db/connection.ts">
-{`import { Connection, BaseModel } from 'typescript-orm';
+{`import { Connection, BaseModel } from 'foundry-orm';
 
 // Create connection
 const connection = new Connection('sqlite', {
@@ -133,7 +133,7 @@ if (user) {
       </p>
 
       <CodeBlock language="typescript">
-{`import { QueryBuilder } from 'typescript-orm';
+{`import { QueryBuilder } from 'foundry-orm';
 import connection from './db/connection';
 
 const adapter = connection.getAdapter();
@@ -155,7 +155,7 @@ console.log('Found users:', results.length);`}
       <p>Here's a complete working example:</p>
 
       <CodeBlock language="typescript" filename="app.ts">
-{`import { Connection, Entity, Column, BaseModel } from 'typescript-orm';
+{`import { Connection, Entity, Column, BaseModel } from 'foundry-orm';
 
 // Define model
 @Entity('users')
@@ -223,19 +223,19 @@ main().catch(console.error);`}
       <p>Now that you understand the basics, explore:</p>
       <ul>
         <li>
-          <a href="/docs/models">Advanced model features and decorators</a>
+          <a href="/foundry-orm/docs/models">Advanced model features and decorators</a>
         </li>
         <li>
-          <a href="/docs/connections">Different database configurations</a>
+          <a href="/foundry-orm/docs/connections">Different database configurations</a>
         </li>
         <li>
-          <a href="/docs/query-builder">Complex queries with Query Builder</a>
+          <a href="/foundry-orm/docs/query-builder">Complex queries with Query Builder</a>
         </li>
         <li>
-          <a href="/docs/transactions">Transaction management</a>
+          <a href="/foundry-orm/docs/transactions">Transaction management</a>
         </li>
         <li>
-          <a href="/docs/examples">Real-world examples</a>
+          <a href="/foundry-orm/docs/examples">Real-world examples</a>
         </li>
       </ul>
     </div>

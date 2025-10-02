@@ -14,7 +14,7 @@ export default function QueryBuilderPage() {
       </p>
 
       <CodeBlock language="typescript">
-{`import { QueryBuilder } from 'typescript-orm';
+{`import { QueryBuilder } from 'foundry-orm';
 import connection from './db/connection';
 
 const adapter = connection.getAdapter();
@@ -261,7 +261,7 @@ const results = await qb
 
       <h3>User Search</h3>
       <CodeBlock language="typescript" filename="services/userSearch.ts">
-{`import { QueryBuilder } from 'typescript-orm';
+{`import { QueryBuilder } from 'foundry-orm';
 import connection from '../db/connection';
 
 export async function searchUsers(
@@ -347,13 +347,13 @@ export async function searchUsers(
       <h2>Next Steps</h2>
       <ul>
         <li>
-          <a href="/docs/transactions">Learn about transactions</a>
+          <a href="/foundry-orm/docs/transactions">Learn about transactions</a>
         </li>
         <li>
-          <a href="/docs/models">Work with models for simpler queries</a>
+          <a href="/foundry-orm/docs/models">Work with models for simpler queries</a>
         </li>
         <li>
-          <a href="/docs/examples">See real-world query examples</a>
+          <a href="/foundry-orm/docs/examples">See real-world query examples</a>
         </li>
       </ul>
     </div>
