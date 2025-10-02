@@ -346,7 +346,7 @@ npm test -- tests/models.test.ts
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions!
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/my-feature`
@@ -388,9 +388,7 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## 📞 Support
 
-- 📧 **Email**: support@foundryorm.com
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/sitharaj88/foundry-orm/discussions)
-- 🐛 **Issues**: [GitHub Issues](https://github.com/sitharaj88/foundry-orm/issues)
+-  **Issues**: [GitHub Issues](https://github.com/sitharaj88/foundry-orm/issues)
 - 📖 **Documentation**: [Official Docs](https://sitharaj88.github.io/foundry-orm/)
 
 ---
