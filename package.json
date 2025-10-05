@@ -1,13 +1,14 @@
 {
   "name": "foundry-orm",
-  "version": "1.0.0",
+  "version": "0.1.0-alpha.1",
   "description": "FoundryORM — enterprise-grade TypeScript ORM for Express.js (Postgres, MySQL, SQLite, MongoDB)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
     "orm",
@@ -18,52 +19,31 @@
     "mysql",
     "sqlite",
     "mongodb",
-    "sql",
-    "nosql",
     "query-builder",
-    "transactions",
-    "connection-pooling",
     "decorators",
-    "enterprise",
-    "backend",
-    "api",
-    "data-access",
-    "persistence",
-    "model",
-    "entity",
-    "repository",
-    "dao",
     "active-record",
-    "migration",
-    "schema",
-    "validation",
-    "logging",
-    "health-check",
-    "monitoring",
-    "performance",
-    "scalability",
-    "production-ready",
-    "nodejs",
-    "npm",
-    "library",
-    "framework",
-    "tool",
-    "developer-tools",
-    "web-development",
-    "full-stack",
-    "server-side",
-    "data-layer",
-    "business-logic",
     "crud",
-    "rest-api",
-    "graphql",
-    "microservices"
+    "nodejs",
+    "backend",
+    "sql"
   ],
-  "author": "",
+  "author": "Sitharaj Seenivasan <sitharaj88@gmail.com>",
   "license": "Apache-2.0",
+  "homepage": "https://github.com/sitharaj88/foundry-orm#readme",
+  "bugs": {
+    "url": "https://github.com/sitharaj88/foundry-orm/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/sitharaj88/foundry-orm.git"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

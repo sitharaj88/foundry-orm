@@ -1,0 +1,47 @@
+# Source files
+src/
+*.ts
+!*.d.ts
+
+# Tests
+test/
+*.test.ts
+*.spec.ts
+
+# Examples and docs
+example/
+docs-website/
+
+# Configuration files
+tsconfig.json
+jest.config.js
+.github/
+.gitignore
+
+# Build artifacts
+*.log
+*.tgz
+node_modules/
+coverage/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.DS_Store
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+server.log
+
+# Documentation (keep README.md and LICENSE)
+MYSQL_TESTING.md
+TEST_RESULTS.md
+MYSQL_SETUP.md
+NPM_RELEASE_GUIDE.md
