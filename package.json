@@ -1,20 +1,49 @@
 {
   "name": "foundry-orm",
-  "version": "1.0.0",
+  "version": "0.1.0-alpha.1",
   "description": "FoundryORM — enterprise-grade TypeScript ORM for Express.js (Postgres, MySQL, SQLite, MongoDB)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "npm run build && npm test"
   },
-  "keywords": ["orm", "typescript", "express"],
-  "author": "",
+  "keywords": [
+    "orm",
+    "typescript",
+    "express",
+    "database",
+    "postgresql",
+    "mysql",
+    "sqlite",
+    "mongodb",
+    "query-builder",
+    "decorators",
+    "active-record",
+    "crud",
+    "nodejs",
+    "backend",
+    "sql"
+  ],
+  "author": "Sitharaj Seenivasan <sitharaj88@gmail.com>",
   "license": "Apache-2.0",
+  "homepage": "https://github.com/sitharaj88/foundry-orm#readme",
+  "bugs": {
+    "url": "https://github.com/sitharaj88/foundry-orm/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/sitharaj88/foundry-orm.git"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

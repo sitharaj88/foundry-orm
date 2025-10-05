@@ -2,10 +2,14 @@
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
-[![npm version](https://img.shields.io/npm/v/foundry-orm.svg)](https://www.npmjs.com/package/foundry-orm)
+[![Node.js](https://img.shields.io/badge/Node.js-16+-green.svg)](https://nodejs.org/)
+[![npm version](https://img.shields.io/npm/v/foundry-orm.svg?style=flat-square)](https://www.npmjs.com/package/foundry-orm)
+[![npm downloads](https://img.shields.io/npm/dm/foundry-orm.svg?style=flat-square)](https://www.npmjs.com/package/foundry-orm)
+[![GitHub stars](https://img.shields.io/github/stars/sitharaj88/foundry-orm.svg?style=flat-square)](https://github.com/sitharaj88/foundry-orm)
 
 A powerful, enterprise-grade Object-Relational Mapping (ORM) library for TypeScript applications using Express.js. FoundryORM provides seamless integration with multiple databases including PostgreSQL, MySQL, SQLite, and MongoDB, offering a unified API for database operations.
+
+> **Note**: This package is currently in **alpha** stage. APIs may change in future releases.
 
 ## ✨ Features
 
@@ -23,6 +27,14 @@ A powerful, enterprise-grade Object-Relational Mapping (ORM) library for TypeScr
 
 ## 📦 Installation
 
+### Install Latest Alpha Version (Recommended for testing)
+
+```bash
+npm install foundry-orm@alpha
+```
+
+### Install Stable Version
+
 ```bash
 npm install foundry-orm
 ```
@@ -31,6 +43,24 @@ npm install foundry-orm
 
 ```bash
 npm install reflect-metadata
+```
+
+### Database Drivers
+
+Install the driver for your database:
+
+```bash
+# PostgreSQL
+npm install pg
+
+# MySQL
+npm install mysql2
+
+# SQLite
+npm install sqlite3
+
+# MongoDB
+npm install mongodb
 ```
 
 ## 🚀 Quick Start
@@ -346,7 +376,7 @@ npm test -- tests/models.test.ts
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions!
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/my-feature`
@@ -380,7 +410,20 @@ npm test
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## � Version History
+
+### v0.1.0-alpha.1 (Current)
+- 🎉 Initial alpha release
+- ✅ Multi-database support (PostgreSQL, MySQL, SQLite, MongoDB)
+- ✅ Connection pooling
+- ✅ Transaction support
+- ✅ Decorator-based models (@Entity, @Column)
+- ✅ Query builder
+- ✅ Health checks
+- ✅ Comprehensive logging
+- ✅ TypeScript support
+
+## �🙏 Acknowledgments
 
 - Built with ❤️ for the TypeScript and Node.js community
 - Inspired by popular ORMs like TypeORM and Sequelize
@@ -388,13 +431,12 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## 📞 Support
 
-- 📧 **Email**: support@foundryorm.com
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/sitharaj88/foundry-orm/discussions)
 - 🐛 **Issues**: [GitHub Issues](https://github.com/sitharaj88/foundry-orm/issues)
 - 📖 **Documentation**: [Official Docs](https://sitharaj88.github.io/foundry-orm/)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/sitharaj88/foundry-orm/discussions)
 
 ---
 
 <p align="center">
-  <strong>FoundryORM</strong> - Building the future of TypeScript ORMs
+  <strong>FoundryORM v0.1.0-alpha.1</strong> - Building the future of TypeScript ORMs
 </p>
