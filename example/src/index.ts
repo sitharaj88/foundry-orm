@@ -1,22 +1,53 @@
 import 'reflect-metadata';
 import express, { Request, Response } from 'express';
 // Import from the built dist directory
-const { Connection, Entity, Column, BaseModel, ConsoleLogger } = require('../../dist/index');
+const {
+  Connection,
+  Entity,
+  Column,
+  BaseModel,
+  ConsoleLogger,
+  Repository,
+  HasMany,
+  BelongsTo
+} = require('../../dist/index');
 
-// Define User model
+// Define User model with relationship
 @Entity('users')
 class User extends BaseModel {
-  @Column('id')
+  @Column({ primary: true, autoIncrement: true })
   id!: number;
 
-  @Column('name')
+  @Column()
   name!: string;
 
-  @Column('email')
+  @Column()
   email!: string;
 
-  @Column('age')
+  @Column()
   age!: number;
+
+  @HasMany(() => Post, 'userId')
+  posts!: Post[];
+}
+
+// Define Post model with relationship
+@Entity('posts')
+class Post extends BaseModel {
+  @Column({ primary: true, autoIncrement: true })
+  id!: number;
+
+  @Column()
+  title!: string;
+
+  @Column()
+  content!: string;
+
+  @Column()
+  userId!: number;
+
+  @BelongsTo(() => User, 'userId')
+  user!: User;
 }
 
 // Initialize Express app
@@ -24,16 +55,24 @@ const app = express();
 app.use(express.json());
 
 // Database connection
-const connection = new Connection('sqlite', { 
-  filename: './example.db' 
+const connection = new Connection('sqlite', {
+  filename: './example.db'
 }, new ConsoleLogger());
+
+// Create repositories (new in v0.2.0!)
+let userRepo: typeof Repository;
+let postRepo: typeof Repository;
 
 // Initialize database
 async function initDatabase() {
   await connection.connect();
-  BaseModel.setConnection(connection);
+  BaseModel.setConnection(connection, 'sqlite');
 
-  // Create table if not exists
+  // Initialize repositories
+  userRepo = new Repository(User, connection, 'sqlite');
+  postRepo = new Repository(Post, connection, 'sqlite');
+
+  // Create tables if not exists
   const adapter = connection.getAdapter();
   await adapter.query(`
     CREATE TABLE IF NOT EXISTS users (
@@ -43,13 +82,24 @@ async function initDatabase() {
       age INTEGER
     )
   `);
-  
+
+  await adapter.query(`
+    CREATE TABLE IF NOT EXISTS posts (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      content TEXT,
+      userId INTEGER,
+      FOREIGN KEY (userId) REFERENCES users(id)
+    )
+  `);
+
   console.log('✅ Database initialized successfully');
+  console.log('📦 Using FoundryORM v0.2.0 with Repository pattern');
 }
 
 // Routes
 app.get('/', (req: Request, res: Response) => {
-  res.json({ 
+  res.json({
     message: 'Welcome to TypeScript ORM Example API',
     endpoints: {
       'GET /users': 'Get all users',
@@ -99,7 +149,7 @@ app.get('/users/:id', async (req: Request, res: Response) => {
 app.post('/users', async (req: Request, res: Response) => {
   try {
     const { name, email, age } = req.body;
-    
+
     if (!name || !email) {
       return res.status(400).json({ success: false, error: 'Name and email are required' });
     }

@@ -20,4 +20,6 @@ __exportStar(require("./query-builder"), exports);
 __exportStar(require("./adapters"), exports);
 __exportStar(require("./logger"), exports);
 __exportStar(require("./validator"), exports);
+__exportStar(require("./repository"), exports);
+__exportStar(require("./relationships"), exports);
 //# sourceMappingURL=index.js.map

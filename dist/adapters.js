@@ -31,7 +31,11 @@ class PostgresAdapter {
     async query(sql, params) {
         try {
             this.logger.debug(`Executing query: ${sql}`, { params });
-            return await this.pool.query(sql, params);
+            const result = await this.pool.query(sql, params);
+            return {
+                rows: result.rows || [],
+                rowCount: result.rowCount
+            };
         }
         catch (error) {
             this.logger.error('Query failed', { sql, params, error });
@@ -76,7 +80,11 @@ class PostgresTransactionAdapter {
     disconnect() { throw new Error('Not implemented'); }
     async query(sql, params) {
         try {
-            return await this.client.query(sql, params);
+            const result = await this.client.query(sql, params);
+            return {
+                rows: result.rows || [],
+                rowCount: result.rowCount
+            };
         }
         catch (error) {
             const message = error instanceof Error ? error.message : String(error);
@@ -118,7 +126,13 @@ class MySQLAdapter {
     async query(sql, params) {
         try {
             this.logger.debug(`Executing query: ${sql}`, { params });
-            return await this.pool.execute(sql, params);
+            const [rows, fields] = await this.pool.execute(sql, params);
+            return {
+                rows: Array.isArray(rows) ? rows : [],
+                rowCount: Array.isArray(rows) ? rows.length : 0,
+                lastID: rows.insertId,
+                changes: rows.affectedRows
+            };
         }
         catch (error) {
             this.logger.error('Query failed', { sql, params, error });
@@ -163,7 +177,13 @@ class MySQLTransactionAdapter {
     disconnect() { throw new Error('Not implemented'); }
     async query(sql, params) {
         try {
-            return await this.connection.execute(sql, params);
+            const [rows, fields] = await this.connection.execute(sql, params);
+            return {
+                rows: Array.isArray(rows) ? rows : [],
+                rowCount: Array.isArray(rows) ? rows.length : 0,
+                lastID: rows.insertId,
+                changes: rows.affectedRows
+            };
         }
         catch (error) {
             const message = error instanceof Error ? error.message : String(error);
@@ -225,7 +245,7 @@ class SQLiteAdapter {
                             reject(new logger_1.ORMErrors.QueryError(`Query failed: ${err.message}`, sql));
                         }
                         else {
-                            resolve({ rows });
+                            resolve({ rows: rows || [], rowCount: rows?.length || 0 });
                         }
                     });
                 }
@@ -286,17 +306,26 @@ class MongoDBAdapter {
         try {
             this.logger.debug(`Executing MongoDB operation on ${collection}`, operation);
             const coll = this.db.collection(collection);
+            // If operation is not provided or is an array (params), treat collection as a SQL-like query
+            if (!operation || Array.isArray(operation)) {
+                // For compatibility, return empty result
+                return { rows: [], rowCount: 0 };
+            }
             if (operation.find) {
-                return coll.find(operation.find).toArray();
+                const rows = await coll.find(operation.find).toArray();
+                return { rows, rowCount: rows.length };
             }
             else if (operation.insertOne) {
-                return coll.insertOne(operation.insertOne);
+                const result = await coll.insertOne(operation.insertOne);
+                return { rows: [], rowCount: 1, lastID: result.insertedId };
             }
             else if (operation.updateOne) {
-                return coll.updateOne(operation.updateOne.filter, operation.updateOne.update);
+                const result = await coll.updateOne(operation.updateOne.filter, operation.updateOne.update);
+                return { rows: [], rowCount: result.matchedCount, changes: result.modifiedCount };
             }
             else if (operation.deleteOne) {
-                return coll.deleteOne(operation.deleteOne);
+                const result = await coll.deleteOne(operation.deleteOne);
+                return { rows: [], rowCount: result.deletedCount, changes: result.deletedCount };
             }
             throw new Error('Unsupported operation');
         }

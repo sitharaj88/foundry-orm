@@ -14,13 +14,13 @@ function Column(nameOrOptions) {
     return function (target, propertyKey) {
         const columns = Reflect.getMetadata('columns', target.constructor) || [];
         let name;
-        let type = 'string';
+        let options = {};
         if (typeof nameOrOptions === 'string') {
             name = nameOrOptions;
         }
         else if (nameOrOptions) {
             name = nameOrOptions.name || propertyKey;
-            type = nameOrOptions.type || 'string';
+            options = nameOrOptions;
         }
         else {
             name = propertyKey;
@@ -28,18 +28,20 @@ function Column(nameOrOptions) {
         columns.push({
             propertyKey,
             name,
-            type
+            type: options.type || 'string',
+            ...options
         });
         Reflect.defineMetadata('columns', columns, target.constructor);
     };
 }
 class BaseModel {
-    static setConnection(connection) {
+    static setConnection(connection, dialect = 'sqlite') {
         this.connection = connection;
+        this.dialect = dialect;
     }
     static async find(id) {
         const tableName = Reflect.getMetadata('tableName', this);
-        const qb = new query_builder_1.QueryBuilder(tableName, this.connection.getAdapter());
+        const qb = new query_builder_1.QueryBuilder(tableName, this.connection.getAdapter(), this.dialect);
         qb.where('id', '=', id);
         const result = await qb.execute();
         if (!result.rows[0]) {
@@ -51,7 +53,7 @@ class BaseModel {
     }
     static async findAll() {
         const tableName = Reflect.getMetadata('tableName', this);
-        const qb = new query_builder_1.QueryBuilder(tableName, this.connection.getAdapter());
+        const qb = new query_builder_1.QueryBuilder(tableName, this.connection.getAdapter(), this.dialect);
         const result = await qb.execute();
         return result.rows.map((row) => {
             const instance = new this();
@@ -66,36 +68,42 @@ class BaseModel {
         return instance;
     }
     async save() {
-        const tableName = Reflect.getMetadata('tableName', this.constructor);
+        const tableName = (0, query_builder_1.sanitizeIdentifier)(Reflect.getMetadata('tableName', this.constructor));
         const columns = Reflect.getMetadata('columns', this.constructor) || [];
         const adapter = this.constructor.connection.getAdapter();
+        const dialect = this.constructor.dialect || 'sqlite';
         const values = [];
         const placeholders = [];
         const updates = [];
         const insertCols = [];
         columns.forEach((col, index) => {
             const value = this[col.propertyKey];
+            const safeColName = (0, query_builder_1.sanitizeIdentifier)(col.name);
+            const placeholder = dialect === 'postgres' ? `$${values.length + 1}` : '?';
             // Skip id on insert, include all fields on update
             if (this.id) {
                 // Update - include all fields except id
                 if (col.propertyKey !== 'id' && value !== undefined) {
+                    const updatePlaceholder = dialect === 'postgres' ? `$${values.length + 1}` : '?';
+                    updates.push(`${safeColName} = ${updatePlaceholder}`);
                     values.push(value);
-                    updates.push(`${col.name} = ?`);
                 }
             }
             else {
                 // Insert - skip id if it's undefined (autoincrement)
                 if (col.propertyKey !== 'id' && value !== undefined) {
-                    insertCols.push(col.name);
+                    insertCols.push(safeColName);
                     values.push(value);
-                    placeholders.push('?');
+                    const insertPlaceholder = dialect === 'postgres' ? `$${values.length}` : '?';
+                    placeholders.push(insertPlaceholder);
                 }
             }
         });
         let sql;
         if (this.id) {
             // Update
-            sql = `UPDATE ${tableName} SET ${updates.join(', ')} WHERE id = ?`;
+            const idPlaceholder = dialect === 'postgres' ? `$${values.length + 1}` : '?';
+            sql = `UPDATE ${tableName} SET ${updates.join(', ')} WHERE id = ${idPlaceholder}`;
             values.push(this.id);
         }
         else {
@@ -120,11 +128,14 @@ class BaseModel {
         if (!this.id) {
             throw new Error('Cannot delete model without id');
         }
-        const tableName = Reflect.getMetadata('tableName', this.constructor);
+        const tableName = (0, query_builder_1.sanitizeIdentifier)(Reflect.getMetadata('tableName', this.constructor));
         const adapter = this.constructor.connection.getAdapter();
-        const sql = `DELETE FROM ${tableName} WHERE id = ?`;
+        const dialect = this.constructor.dialect || 'sqlite';
+        const placeholder = dialect === 'postgres' ? '$1' : '?';
+        const sql = `DELETE FROM ${tableName} WHERE id = ${placeholder}`;
         await adapter.query(sql, [this.id]);
     }
 }
 exports.BaseModel = BaseModel;
+BaseModel.dialect = 'sqlite';
 //# sourceMappingURL=model.js.map

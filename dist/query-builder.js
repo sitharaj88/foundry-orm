@@ -1,21 +1,34 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.QueryBuilder = void 0;
+exports.sanitizeIdentifier = sanitizeIdentifier;
+// Safe identifier pattern for table/column names
+const SAFE_IDENTIFIER = /^[a-zA-Z_][a-zA-Z0-9_]*$/;
+function sanitizeIdentifier(name) {
+    if (!SAFE_IDENTIFIER.test(name)) {
+        throw new Error(`Invalid SQL identifier: ${name}`);
+    }
+    return name;
+}
 class QueryBuilder {
-    constructor(table, adapter) {
+    constructor(table, adapter, dialect = 'postgres') {
         this.conditions = [];
         this.params = [];
         this.selectFields = ['*'];
-        this.table = table;
+        this.table = sanitizeIdentifier(table);
         this.adapter = adapter;
+        this.dialect = dialect;
     }
     select(...fields) {
-        this.selectFields = fields;
+        this.selectFields = fields.map(f => f === '*' ? f : sanitizeIdentifier(f));
         return this;
     }
     where(column, operator, value) {
-        const paramIndex = this.params.length + 1;
-        this.conditions.push(`${column} ${operator} $${paramIndex}`);
+        const safeColumn = sanitizeIdentifier(column);
+        const placeholder = this.dialect === 'postgres'
+            ? `$${this.params.length + 1}`
+            : '?';
+        this.conditions.push(`${safeColumn} ${operator} ${placeholder}`);
         this.params.push(value);
         return this;
     }

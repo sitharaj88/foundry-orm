@@ -18,7 +18,10 @@ A powerful, enterprise-grade Object-Relational Mapping (ORM) library for TypeScr
 - 🔐 **Transaction Support**: ACID transactions across all supported databases
 - 🛡️ **Type Safety**: Full TypeScript support with compile-time type checking
 - 🎯 **Decorator-Based**: Clean, decorator-driven model definitions
-- 📊 **Query Builder**: Fluent API for complex SQL queries
+- 📊 **Query Builder**: Fluent API with cross-database dialect support
+- 🔗 **Relationship Decorators**: `@HasMany`, `@HasOne`, `@BelongsTo`, `@ManyToMany`
+- 📁 **Repository Pattern**: Clean data access layer with multiple connection support
+- 🔒 **SQL Injection Prevention**: Built-in identifier sanitization
 - 🔍 **Health Checks**: Built-in database health monitoring
 - 📝 **Comprehensive Logging**: Pluggable logging interface
 - ⚡ **High Performance**: Optimized for production workloads
@@ -196,6 +199,20 @@ export class Product extends BaseModel {
 
 ### Relationships
 ```typescript
+import { Entity, Column, BaseModel, HasMany, BelongsTo } from 'foundry-orm';
+
+@Entity('users')
+export class User extends BaseModel {
+  @Column({ primary: true, autoIncrement: true })
+  id: number;
+
+  @Column()
+  name: string;
+
+  @HasMany(() => Order, 'userId')
+  orders: Order[];
+}
+
 @Entity('orders')
 export class Order extends BaseModel {
   @Column({ primary: true, autoIncrement: true })
@@ -207,10 +224,32 @@ export class Order extends BaseModel {
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   total: number;
 
-  // Define relationships (future feature)
-  // @BelongsTo(() => User)
-  // user: User;
+  @BelongsTo(() => User, 'userId')
+  user: User;
 }
+```
+
+## 📁 Repository Pattern
+
+Use the Repository pattern for clean data access with multiple database support:
+
+```typescript
+import { Repository, Connection } from 'foundry-orm';
+
+// Create repositories with different connections
+const userRepo = new Repository(User, primaryConnection, 'postgres');
+const analyticsRepo = new Repository(Event, analyticsConnection, 'mysql');
+
+// CRUD operations
+const user = await userRepo.find(1);
+const users = await userRepo.findAll({ where: { active: true }, limit: 10 });
+const newUser = await userRepo.create({ name: 'Jane', email: 'jane@example.com' });
+await userRepo.update(1, { name: 'Updated Name' });
+await userRepo.delete(1);
+
+// Utility methods
+const count = await userRepo.count({ active: true });
+const exists = await userRepo.exists(1);
 ```
 
 ## 🔧 CRUD Operations
@@ -410,9 +449,17 @@ npm test
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
-## � Version History
+## 📜 Version History
 
-### v0.1.0-alpha.1 (Current)
+### v0.2.0-alpha.1 (Current)
+- 🔗 **Repository Pattern** - Clean data access layer with multiple connection support
+- 🔗 **Relationship Decorators** - `@HasMany`, `@HasOne`, `@BelongsTo`, `@ManyToMany`
+- 🔧 **Cross-Database Query Builder** - Dialect-aware placeholder generation
+- 🔒 **SQL Injection Prevention** - Built-in identifier sanitization
+- 🛡️ **Enhanced Type Safety** - Generic types for BaseModel methods
+- 📊 **Standardized Query Results** - Unified `QueryResult` interface
+
+### v0.1.0-alpha.1
 - 🎉 Initial alpha release
 - ✅ Multi-database support (PostgreSQL, MySQL, SQLite, MongoDB)
 - ✅ Connection pooling
@@ -423,7 +470,7 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 - ✅ Comprehensive logging
 - ✅ TypeScript support
 
-## �🙏 Acknowledgments
+## 🙏 Acknowledgments
 
 - Built with ❤️ for the TypeScript and Node.js community
 - Inspired by popular ORMs like TypeORM and Sequelize
@@ -438,5 +485,5 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 ---
 
 <p align="center">
-  <strong>FoundryORM v0.1.0-alpha.1</strong> - Building the future of TypeScript ORMs
+  <strong>FoundryORM v0.2.0-alpha.1</strong> - Building the future of TypeScript ORMs
 </p>

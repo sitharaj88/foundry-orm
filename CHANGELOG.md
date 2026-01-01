@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0-alpha.1] - 2026-01-01
+
+### Added
+- **Repository Pattern** - New `Repository<T>` class for clean data access layer separation
+  - Supports multiple database connections simultaneously
+  - Methods: `find()`, `findAll()`, `findOne()`, `create()`, `update()`, `delete()`, `count()`, `exists()`
+- **Relationship Decorators** - Define model associations
+  - `@HasMany(() => Model, foreignKey)` - One-to-many relationships
+  - `@HasOne(() => Model, foreignKey)` - One-to-one relationships
+  - `@BelongsTo(() => Model, foreignKey)` - Inverse relationships
+  - `@ManyToMany(() => Model, pivotTable)` - Many-to-many relationships
+  - Helper functions: `getRelations()`, `hasRelation()`
+- **Cross-Database Query Builder** - Dialect-aware placeholder generation
+  - PostgreSQL: `$1, $2, $3...` placeholders
+  - MySQL/SQLite: `?, ?, ?...` placeholders
+- **SQL Injection Prevention** - `sanitizeIdentifier()` validates all table/column names
+- **Enhanced Type Safety** - Generic types for `BaseModel` methods
+  - `ModelConstructor<T>` type helper
+  - Proper TypeScript inference for `find()`, `findAll()`, `create()`
+- **Standardized Query Results** - Unified `QueryResult` interface
+  - Properties: `rows`, `rowCount`, `lastID`, `changes`
+  - Consistent across all database adapters
+- **Enhanced Column Options** - Extended `@Column` decorator
+  - New options: `primary`, `autoIncrement`, `nullable`, `unique`, `default`, `length`, `precision`, `scale`
+
+### Changed
+- Improved MongoDB adapter with proper `QueryResult` compliance
+- BaseModel now tracks database dialect for proper query generation
+- QueryBuilder sanitizes table and column names
+
+### Fixed
+- Query placeholder mismatch between PostgreSQL and MySQL/SQLite
+- Inconsistent return types from database adapters
+
 ## [0.1.0-alpha.1] - 2025-10-05
 
 ### Added

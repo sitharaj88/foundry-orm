@@ -1,28 +1,45 @@
 import { IDatabaseAdapter } from './adapters';
 
+export type DatabaseDialect = 'postgres' | 'mysql' | 'sqlite' | 'mongodb';
+
+// Safe identifier pattern for table/column names
+const SAFE_IDENTIFIER = /^[a-zA-Z_][a-zA-Z0-9_]*$/;
+
+export function sanitizeIdentifier(name: string): string {
+  if (!SAFE_IDENTIFIER.test(name)) {
+    throw new Error(`Invalid SQL identifier: ${name}`);
+  }
+  return name;
+}
+
 export class QueryBuilder {
   private table: string;
   private conditions: string[] = [];
   private params: any[] = [];
   private adapter?: IDatabaseAdapter;
+  private dialect: DatabaseDialect;
   private selectFields: string[] = ['*'];
   private orderByClause?: string;
   private limitClause?: number;
   private offsetClause?: number;
 
-  constructor(table: string, adapter?: IDatabaseAdapter) {
-    this.table = table;
+  constructor(table: string, adapter?: IDatabaseAdapter, dialect: DatabaseDialect = 'postgres') {
+    this.table = sanitizeIdentifier(table);
     this.adapter = adapter;
+    this.dialect = dialect;
   }
 
   select(...fields: string[]): QueryBuilder {
-    this.selectFields = fields;
+    this.selectFields = fields.map(f => f === '*' ? f : sanitizeIdentifier(f));
     return this;
   }
 
   where(column: string, operator: string, value: any): QueryBuilder {
-    const paramIndex = this.params.length + 1;
-    this.conditions.push(`${column} ${operator} $${paramIndex}`);
+    const safeColumn = sanitizeIdentifier(column);
+    const placeholder = this.dialect === 'postgres' 
+      ? `$${this.params.length + 1}` 
+      : '?';
+    this.conditions.push(`${safeColumn} ${operator} ${placeholder}`);
     this.params.push(value);
     return this;
   }

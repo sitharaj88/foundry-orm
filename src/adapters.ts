@@ -1,9 +1,19 @@
 import { ILogger, ORMErrors } from './logger';
 
+/**
+ * Standardized query result interface for all adapters
+ */
+export interface QueryResult {
+  rows: any[];
+  rowCount?: number;
+  lastID?: number;
+  changes?: number;
+}
+
 export interface IDatabaseAdapter {
   connect(): Promise<void>;
   disconnect(): Promise<void>;
-  query(sql: string, params?: any[]): Promise<any>;
+  query(queryOrCollection: string, params?: any[]): Promise<QueryResult>;
   transaction(callback: (adapter: IDatabaseAdapter) => Promise<void>): Promise<void>;
   healthCheck(): Promise<boolean>;
 }
@@ -38,10 +48,14 @@ export class PostgresAdapter implements IDatabaseAdapter {
     }
   }
 
-  async query(sql: string, params?: any[]): Promise<any> {
+  async query(sql: string, params?: any[]): Promise<QueryResult> {
     try {
       this.logger.debug(`Executing query: ${sql}`, { params });
-      return await this.pool.query(sql, params);
+      const result = await this.pool.query(sql, params);
+      return {
+        rows: result.rows || [],
+        rowCount: result.rowCount
+      };
     } catch (error) {
       this.logger.error('Query failed', { sql, params, error });
       const message = error instanceof Error ? error.message : String(error);
@@ -76,14 +90,18 @@ export class PostgresAdapter implements IDatabaseAdapter {
 }
 
 class PostgresTransactionAdapter implements IDatabaseAdapter {
-  constructor(private client: any, private logger: ILogger) {}
+  constructor(private client: any, private logger: ILogger) { }
 
   connect(): Promise<void> { throw new Error('Not implemented'); }
   disconnect(): Promise<void> { throw new Error('Not implemented'); }
 
-  async query(sql: string, params?: any[]): Promise<any> {
+  async query(sql: string, params?: any[]): Promise<QueryResult> {
     try {
-      return await this.client.query(sql, params);
+      const result = await this.client.query(sql, params);
+      return {
+        rows: result.rows || [],
+        rowCount: result.rowCount
+      };
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       throw new ORMErrors.QueryError(`Query failed: ${message}`, sql);
@@ -128,10 +146,16 @@ export class MySQLAdapter implements IDatabaseAdapter {
     }
   }
 
-  async query(sql: string, params?: any[]): Promise<any> {
+  async query(sql: string, params?: any[]): Promise<QueryResult> {
     try {
       this.logger.debug(`Executing query: ${sql}`, { params });
-      return await this.pool.execute(sql, params);
+      const [rows, fields] = await this.pool.execute(sql, params);
+      return {
+        rows: Array.isArray(rows) ? rows : [],
+        rowCount: Array.isArray(rows) ? rows.length : 0,
+        lastID: (rows as any).insertId,
+        changes: (rows as any).affectedRows
+      };
     } catch (error) {
       this.logger.error('Query failed', { sql, params, error });
       const message = error instanceof Error ? error.message : String(error);
@@ -166,14 +190,20 @@ export class MySQLAdapter implements IDatabaseAdapter {
 }
 
 class MySQLTransactionAdapter implements IDatabaseAdapter {
-  constructor(private connection: any, private logger: ILogger) {}
+  constructor(private connection: any, private logger: ILogger) { }
 
   connect(): Promise<void> { throw new Error('Not implemented'); }
   disconnect(): Promise<void> { throw new Error('Not implemented'); }
 
-  async query(sql: string, params?: any[]): Promise<any> {
+  async query(sql: string, params?: any[]): Promise<QueryResult> {
     try {
-      return await this.connection.execute(sql, params);
+      const [rows, fields] = await this.connection.execute(sql, params);
+      return {
+        rows: Array.isArray(rows) ? rows : [],
+        rowCount: Array.isArray(rows) ? rows.length : 0,
+        lastID: (rows as any).insertId,
+        changes: (rows as any).affectedRows
+      };
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       throw new ORMErrors.QueryError(`Query failed: ${message}`, sql);
@@ -214,17 +244,17 @@ export class SQLiteAdapter implements IDatabaseAdapter {
     }
   }
 
-  async query(sql: string, params?: any[]): Promise<any> {
+  async query(sql: string, params?: any[]): Promise<QueryResult> {
     return new Promise((resolve, reject) => {
       try {
         this.logger.debug(`Executing query: ${sql}`, { params });
-        
+
         // Check if it's an INSERT/UPDATE/DELETE query
         const isModifyQuery = /^(INSERT|UPDATE|DELETE)/i.test(sql.trim());
-        
+
         if (isModifyQuery) {
           const self = this;
-          this.db.run(sql, params || [], function(this: any, err: any) {
+          this.db.run(sql, params || [], function (this: any, err: any) {
             if (err) {
               self.logger.error('Query failed', { sql, params, error: err });
               reject(new ORMErrors.QueryError(`Query failed: ${err.message}`, sql));
@@ -240,7 +270,7 @@ export class SQLiteAdapter implements IDatabaseAdapter {
               this.logger.error('Query failed', { sql, params, error: err });
               reject(new ORMErrors.QueryError(`Query failed: ${err.message}`, sql));
             } else {
-              resolve({ rows });
+              resolve({ rows: rows || [], rowCount: rows?.length || 0 });
             }
           });
         }
@@ -302,18 +332,29 @@ export class MongoDBAdapter implements IDatabaseAdapter {
     }
   }
 
-  async query(collection: string, operation: any): Promise<any> {
+  async query(collection: string, operation?: any): Promise<QueryResult> {
     try {
       this.logger.debug(`Executing MongoDB operation on ${collection}`, operation);
       const coll = this.db.collection(collection);
+
+      // If operation is not provided or is an array (params), treat collection as a SQL-like query
+      if (!operation || Array.isArray(operation)) {
+        // For compatibility, return empty result
+        return { rows: [], rowCount: 0 };
+      }
+
       if (operation.find) {
-        return coll.find(operation.find).toArray();
+        const rows = await coll.find(operation.find).toArray();
+        return { rows, rowCount: rows.length };
       } else if (operation.insertOne) {
-        return coll.insertOne(operation.insertOne);
+        const result = await coll.insertOne(operation.insertOne);
+        return { rows: [], rowCount: 1, lastID: result.insertedId };
       } else if (operation.updateOne) {
-        return coll.updateOne(operation.updateOne.filter, operation.updateOne.update);
+        const result = await coll.updateOne(operation.updateOne.filter, operation.updateOne.update);
+        return { rows: [], rowCount: result.matchedCount, changes: result.modifiedCount };
       } else if (operation.deleteOne) {
-        return coll.deleteOne(operation.deleteOne);
+        const result = await coll.deleteOne(operation.deleteOne);
+        return { rows: [], rowCount: result.deletedCount, changes: result.deletedCount };
       }
       throw new Error('Unsupported operation');
     } catch (error) {
